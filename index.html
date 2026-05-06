@@ -30,11 +30,13 @@
     }
 
     /* 1. COVER BUKA UNDANGAN MODEL WEKITA */
-    #cover {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9999;
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('./cover.webp') center/cover no-repeat;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; color: #fff; transition: 1s;
+   #cover {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9999;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('./cover.webp') center/contain no-repeat #6D4C41;
+  background-color: #6D4C41;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; color: #fff; transition: 1s;
+}
     }
     #cover.hidden { opacity: 0; visibility: hidden; }
     #cover .the-wedding { font-size: 14px; letter-spacing: 4px; margin-bottom: 15px; }
