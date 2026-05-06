@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The Wedding of Afrizal & Ayu Julita</title>
+  
+  <!-- META BUAT SHARE WA - GANTI FOTONYA -->
+  <meta name="description" content="Sabtu, 11 Juli 2026"/>
+  <meta property="og:title" content="The Wedding of Afrizal & Ayu Julita" />
+  <meta property="og:description" content="Sabtu, 11 Juli 2026" />
+  <meta property="og:image" content="./cover.webp" />
+  <meta property="og:type" content="website" />
+  
+  <!-- 2 FONT AJA BIAR ENTENG -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- SWIPER JS BUAT SLIDE - CDN RINGAN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #FDF6EC;
+      color: #5D4037;
+      overflow-x: hidden;
+    }
+
+    /* 1. COVER BUKA UNDANGAN MODEL WEKITA */
+    #cover {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9999;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('./cover.webp') center/cover no-repeat;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; color: #fff; transition: 1s;
+    }
+    #cover.hidden { opacity: 0; visibility: hidden; }
+    #cover .the-wedding { font-size: 14px; letter-spacing: 4px; margin-bottom: 15px; }
+    #cover h1 { font-family: 'Great Vibes', cursive; font-size: 60px; color: #FFD700; margin: 10px 0; line-height: 1; }
+    #cover .tanggal { font-size: 16px; letter-spacing: 2px; margin: 20px 0 30px 0; }
+    .btn-buka {
+      padding: 14px 35px; background: #FFD700; color: #5D4037; border: none;
+      border-radius: 30px; font-weight: 600; font-size: 16px; cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255,215,0,0.4);
+    }
+
+    /* 2. SLIDE SHOW UTAMA */
+    .swiper { width: 100%; height: 100vh; }
+    .swiper-slide {
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 40px 20px; background-size: cover; background-position: center;
+    }
+    .swiper-slide::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(253,246,236,0.9); z-index: 1;
+    }
+    .slide-content { position: relative; z-index: 2; max-width: 600px; width: 100%; }
+    
+    .slide-judul {
+      font-family: 'Great Vibes', cursive; font-size: 48px; color: #A0522D; margin-bottom: 20px;
+    }
+    .slide-teks { font-size: 15px; line-height: 1.8; margin-bottom: 20px; }
+    
+    /* FOTO PENGANTIN MODEL FRAME */
+    .foto-pengantin {
+      width: 220px; height: 300px; object-fit: cover; border-radius: 15px;
+      border: 4px solid #FFD700; box-shadow: 0 5px 25px rgba(0,0,0,0.2); margin: 20px 0;
+    }
+    .nama-besar {
+      font-family: 'Great Vibes', cursive; font-size: 42px; color: #A0522D; margin: 10px 0 5px 0;
+    }
+    .ortu { font-size: 14px; line-height: 1.6; }
+    
+    /* COUNTDOWN */
+    .countdown { display: flex; gap: 10px; margin: 25px 0; justify-content: center; flex-wrap: wrap; }
+    .countdown-box { 
+      background: #8D6E63; color: #fff; padding: 10px; border-radius: 8px; 
+      min-width: 65px; border: 1px solid #FFD700; 
+    }
+    .countdown-box .angka { font-size: 24px; font-weight: 600; display: block; }
+    .countdown-box .label { font-size: 11px; }
+    
+    /* GALERI */
+    .galeri-grid {
+      display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-top: 20px;
+    }
+    .galeri-grid img {
+      width: 100%; height: 150px; object-fit: cover; border-radius: 10px; border: 2px solid #FFD700;
+    }
+    
+    /* TOMBOL */
+    .btn-lokasi {
+      display: inline-block; margin-top: 15px; padding: 10px 25px; background: #8D6E63; 
+      color: #fff; text-decoration: none; border-radius: 25px; font-size: 14px; font-weight: 600;
+    }
+    
+    /* NAVIGASI BULAT BAWAH */
+    .swiper-pagination { bottom: 70px !important; }
+    .swiper-pagination-bullet {
+      width: 10px; height: 10px; background: #8D6E63; opacity: 0.4;
+    }
+    .swiper-pagination-bullet-active {
+      background: #FFD700; opacity: 1; width: 25px; border-radius: 5px;
+    }
+    
+    /* TOMBOL MUSIK */
+    .btn-music {
+      position: fixed; bottom: 25px; right: 20px; width: 45px; height: 45px; border-radius: 50%;
+      background: #8D6E63; color: #fff; border: 2px solid #FFD700; font-size: 20px;
+      cursor: pointer; z-index: 999; display: flex; justify-content: center; align-items: center;
+    }
+    
+    /* WATERMARK LU */
+    .watermark-ads-center {
+      text-align: center; padding: 12px 10px; font-size: 11px; font-weight: 600; color: #FFD700;
+      background: rgba(0, 0, 0, 0.7); letter-spacing: 1px; position: fixed; bottom: 0; width: 100%; z-index: 998;
+    }
+    .watermark-ads-center a { color:#FFD700; text-decoration:none; font-weight:700; }
+    
+    /* HP RESPONSIVE */
+    @media only screen and (max-width: 768px) {
+      #cover h1 { font-size: 48px; }
+      .slide-judul { font-size: 36px; }
+      .nama-besar { font-size: 34px; }
+      .foto-pengantin { width: 180px; height: 240px; }
+      .galeri-grid { grid-template-columns: 1fr; }
+      .galeri-grid img { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. COVER BUKA UNDANGAN -->
+  <div id="cover">
+    <div class="the-wedding">THE WEDDING OF</div>
+    <h1>Afrizal & Ayu Julita</h1>
+    <div class="tanggal">11 . 07 . 2026</div>
+    <button class="btn-buka" onclick="bukaUndangan()">Buka Undangan</button>
+  </div>
+
+  <!-- 2. SLIDE SHOW UTAMA -->
+  <div class="swiper main-swiper">
+    <div class="swiper-wrapper">
+      
+      <!-- SLIDE 1: SAVE THE DATE -->
+      <div class="swiper-slide" style="background-image: url('./');">
+        <div class="slide-content">
+          <div class="slide-judul">Save The Date</div>
+          <div class="nama-besar">Afrizal & Ayu Julita</div>
+          <p class="slide-teks">Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di hari bahagia kami.</p>
+          <div class="countdown">
+            <div class="countdown-box"><span class="angka" id="hari">00</span><span class="label">Hari</span></div>
+            <div class="countdown-box"><span class="angka" id="jam">00</span><span class="label">Jam</span></div>
+            <div class="countdown-box"><span class="angka" id="menit">00</span><span class="label">Menit</span></div>
+            <div class="countdown-box"><span class="angka" id="detik">00</span><span class="label">Detik</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: MEMPELAI PRIA -->
+      <div class="swiper-slide" style="background-image: url('./bg2.webp');">
+        <div class="slide-content">
+          <div class="slide-judul">The Groom</div>
+          <img src="./rizal.webp" alt="Rizal" class="foto-pengantin" loading="lazy">
+          <div class="nama-besar">Afrizal</div>
+          <p class="ortu">Putra dari<br>Bpk. Almarhum Nanung & Ibu Almarhumah Ayuning</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: MEMPELAI WANITA -->
+      <div class="swiper-slide" style="background-image: url('./bg3.webp');">
+        <div class="slide-content">
+          <div class="slide-judul">The Bride</div>
+          <img src="./ayu.webp" alt="Ayu" class="foto-pengantin" loading="lazy">
+          <div class="nama-besar">Ayu Julita</div>
+          <p class="ortu">Putri dari<br>Bpk. Amhar & Ibu Sutina</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: AKAD NIKAH -->
+      <div class="swiper-slide" style="background-image: url('./bg4.webp');">
+        <div class="slide-content">
+          <div class="slide-judul">Akad Nikah</div>
+          <p class="slide-teks">
+            <strong>Sabtu, 11 Juli 2026</strong><br>
+            Pukul 08.00 WIB - Selesai<br><br>
+            <strong>Bertempat di:</strong><br>
+            Masjid Agung Nur Arafah<br>
+            Jl. Sudirman No. 25, Prabumulih
+          </p>
+          <a href="https://www.google.com/maps/place/Agung+Nur+Arafah+Mosque+Prabumulih/@-3.4329587,104.2373805,17z/data=!4m14!1m7!3m6!1s0x2e3a32fffaf0ac3d:0x110dfed373f933a!2sAgung+Nur+Arafah+Mosque+Prabumulih!8m2!3d-3.4329587!4d104.2399554!16s%2Fg%2F11c1wrtmwl!3m5!1s0x2e3a32fffaf0ac3d:0x110dfed373f933a!8m2!3d-3.4329587!4d104.2399554!16s%2Fg%2F11c1wrtmwl?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-lokasi">
+            📍 Lihat Lokasi
+          </a>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: RESEPSI -->
+      <div class="swiper-slide" style="background-image: url('./bg5.webp');">
+        <div class="slide-content">
+          <div class="slide-judul">Resepsi</div>
+          <p class="slide-teks">
+            <strong>Sabtu, 11 Juli 2026</strong><br>
+            Pukul 10.00 - 14.00 WIB<br><br>
+            <strong>Bertempat di:</strong><br>
+            Gedung Patra Ria<br>
+            Jl. Belimbing Komplek Pertamina, Prabumulih
+          </p>
+          <a href="H68Q+RX8, Pasar Prabumulih, Prabumulih Utara, Prabumulih City, South Sumatra 31113" target="_blank" class="btn-lokasi">
+            📍 Lihat Lokasi
+          </a>
+        </div>
+      </div>
+
+      <!-- SLIDE 6: GALERI -->
+      <div class="swiper-slide" style="background-image: url('./bg6.webp');">
+        <div class="slide-content">
+          <div class="slide-judul">Our Moments</div>
+          <div class="galeri-grid">
+            <img src="./galeri1.webp" alt="Galeri 1" loading="lazy">
+            <img src="./galeri2.webp" alt="Galeri 2" loading="lazy">
+            <img src="./galeri3.webp" alt="Galeri 3" loading="lazy">
+            <img src="./galeri4.webp" alt="Galeri 4" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- NAVIGASI BULAT -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- TOMBOL MUSIK -->
+  <button class="btn-music" onclick="toggleMusic()">🔇</button>
+  <audio id="bgMusic" loop>
+    <source src="./lagu.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- WATERMARK LU MIN -->
+  <div class="watermark-ads-center">
+    ⚡ ADS Creative | 
+    <a href="https://wa.me/6281234567890?text=Halo%20min,%20mau%20order%20undangan%20digital" target="_blank">
+       Order WA: 0812-3456-7890
+    </a>
+  </div>
+
+  <!-- SWIPER JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <script>
+    // 1. BUKA UNDANGAN + PLAY MUSIK
+    function bukaUndangan() {
+      document.getElementById('cover').classList.add('hidden');
+      playMusicOnce();
+    }
+
+    // 2. SWIPER SLIDE SHOW KAYAK WEKITA
+    const swiper = new Swiper('.main-swiper', {
+      direction: 'horizontal',
+      loop: true,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      autoplay: { delay: 4000, disableOnInteraction: false },
+      effect: 'slide', // bisa ganti 'fade' atau 'cube'
+    });
+
+    // 3. MUSIK AUTO PLAY SETELAH INTERAKSI
+    let musikPlay = false;
+    const audio = document.getElementById('bgMusic');
+    const btnMusic = document.querySelector('.btn-music');
+    
+    function playMusicOnce() {
+      if (!musikPlay) {
+        audio.play().then(() => {
+          musikPlay = true;
+          btnMusic.innerHTML = '🔊';
+        }).catch(e => console.log('Tunggu interaksi'));
+      }
+    }
+    ['click','touchstart','scroll'].forEach(evt => {
+      document.addEventListener(evt, playMusicOnce, { once: true });
+    });
+
+    function toggleMusic() {
+      if (audio.paused) { audio.play(); btnMusic.innerHTML = '🔊'; } 
+      else { audio.pause(); btnMusic.innerHTML = '🔇'; }
+    }
+    
+    // 4. COUNTDOWN - GANTI TANGGAL DI SINI
+    const tanggalAcara = new Date("July 11, 2026 08:00:00").getTime();
+    setInterval(function() {
+      const selisih = tanggalAcara - new Date().getTime();
+      if(selisih < 0) {
+        document.querySelector(".countdown").innerHTML = "<h3 style='color:#A0522D;'>Acara Telah Berlangsung</h3>";
+        return;
+      }
+      document.getElementById("hari").innerHTML = Math.floor(selisih / 86400000);
+      document.getElementById("jam").innerHTML = Math.floor((selisih % 86400000) / 3600000);
+      document.getElementById("menit").innerHTML = Math.floor((selisih % 3600000) / 60000);
+      document.getElementById("detik").innerHTML = Math.floor((selisih % 60000) / 1000);
+    }, 1000);
+  </script>
+</body>
+</html>
