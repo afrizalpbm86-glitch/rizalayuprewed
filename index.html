@@ -2,131 +2,81 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>The Wedding of Afrizal & Ayu Julita</title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>The Wedding of Afrizal & Ayu</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; overflow: hidden; }
-    body { font-family: 'Poppins', sans-serif; background: #000; }
+    html, body { height: 100%; overflow: hidden; position: fixed; width: 100%; }
+    /* position: fixed = ANTI LONCAT DI HP */
 
-    /* COVER - ANTI KEPOTONG */
     #cover {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
-      background: #000 url('./cover.webp') center/contain no-repeat;
-      /* CONTAIN = GAMBAR UTUH GAK KEPOTONG, ADA BAR HITAM ATAS BAWAH */
-      display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-      text-align: center; color: #fff; padding-bottom: 80px;
+      background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=800') center/cover;
+      display: flex; justify-content: center; align-items: center; flex-direction: column; color: #fff;
     }
-    #cover::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(transparent 60%, rgba(0,0,0,0.8) 100%); z-index: 1;
-    }
-    #cover.hidden { opacity: 0; visibility: hidden; pointer-events: none; transition: 1s; }
-    .cover-content { position: relative; z-index: 2; }
-    #cover h1 { font-family: 'Great Vibes', cursive; font-size: 45px; color: #FFD700; margin: 10px 0; text-shadow: 2px 2px 4px #000; }
-    .btn-buka {
-      padding: 14px 35px; background: #FFD700; color: #5D4037; border: none;
-      border-radius: 30px; font-weight: 600; font-size: 16px; cursor: pointer; margin-top: 20px;
-    }
+    #cover.hidden { display: none; }
+    .btn-buka { padding: 15px 30px; background: gold; border: none; border-radius: 30px; font-size: 18px; margin-top: 20px; cursor: pointer; }
 
-    /* SLIDE - ANTI KEPOTONG + 4 FOTO JALAN */
-    .swiper { width: 100%; height: 100vh; background: #000; }
-    .swiper-slide {
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; background: #000;
-      /* GAMBAR DI DALEM SLIDE PAKE TAG IMG BIAR GAK KEPOTONG */
-    }
-    .slide-img {
-      width: 100%; height: 100%; object-fit: contain; 
-      /* CONTAIN = GAMBAR UTUH 100% GAK KEPOTONG DI HP */
-      position: absolute; top: 0; left: 0; z-index: 1;
+    .swiper { width: 100%; height: 100%; }
+    .swiper-slide { background: #000; }
+    .swiper-slide img {
+      width: 100%; height: 100%; object-fit: cover;
+      /* COVER = PENUH LAYAR, GAK KEPOTONG KALO FOTO LANDSCAPE */
     }
     .slide-content {
-      position: relative; z-index: 2; background: rgba(0,0,0,0.6); 
-      padding: 25px; border-radius: 15px; max-width: 85%; color: #fff;
+      position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.7); padding: 20px; border-radius: 10px; color: #fff; text-align: center; width: 85%;
     }
-    .slide-judul { font-family: 'Great Vibes', cursive; font-size: 38px; color: #FFD700; margin-bottom: 15px; text-shadow: 2px 2px 4px #000; }
-    .nama-besar { font-family: 'Great Vibes', cursive; font-size: 32px; color: #FFD700; margin: 10px 0; }
-    .slide-teks { font-size: 14px; line-height: 1.7; }
+    .slide-content h2 { color: gold; font-size: 32px; margin-bottom: 10px; }
     
-    .countdown { display: flex; gap: 8px; margin: 20px 0; justify-content: center; flex-wrap: wrap; }
-    .countdown-box { background: #8D6E63; color: #fff; padding: 8px; border-radius: 8px; min-width: 60px; }
-    .countdown-box .angka { font-size: 20px; font-weight: 600; display: block; }
-    .countdown-box .label { font-size: 10px; }
-    
-    .swiper-pagination-bullet { background: #fff; opacity: 0.5; }
-    .swiper-pagination-bullet-active { background: #FFD700; opacity: 1; }
-    
-    .btn-music {
-      position: fixed; bottom: 80px; right: 25px; width: 45px; height: 45px; border-radius: 50%;
-      background: #8D6E63; color: #fff; border: 2px solid #fff; font-size: 20px; cursor: pointer; z-index: 999;
-    }
-    
-    .watermark-ads-center {
-      text-align: center; padding: 10px; font-size: 11px; font-weight: 600; color: #FFD700;
-      background: rgba(0, 0, 0, 0.8); position: fixed; bottom: 0; width: 100%; z-index: 998;
-    }
+    .swiper-pagination-bullet-active { background: gold; }
   </style>
 </head>
 <body>
 
   <div id="cover">
-    <div class="cover-content">
-      <p>THE WEDDING OF</p>
-      <h1>Afrizal & Ayu Julita</h1>
-      <p>11 . 07 . 2026</p>
-      <button class="btn-buka" onclick="bukaUndangan()">Buka Undangan</button>
-    </div>
+    <h1>Afrizal & Ayu</h1>
+    <p>11 Juli 2026</p>
+    <button class="btn-buka" onclick="document.getElementById('cover').classList.add('hidden')">Buka Undangan</button>
   </div>
 
-  <div class="swiper main-swiper">
+  <div class="swiper">
     <div class="swiper-wrapper">
       
-      <!-- SLIDE 1 -->
+      <!-- SLIDE 1 - PAKE FOTO ONLINE -->
       <div class="swiper-slide">
-        <img src="./bg1.webp" class="slide-img" alt="Foto 1">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800" alt="Slide 1">
         <div class="slide-content">
-          <div class="slide-judul">Save The Date</div>
-          <div class="nama-besar">Afrizal & Ayu</div>
-          <div class="countdown">
-            <div class="countdown-box"><span class="angka" id="hari">00</span><span class="label">Hari</span></div>
-            <div class="countdown-box"><span class="angka" id="jam">00</span><span class="label">Jam</span></div>
-            <div class="countdown-box"><span class="angka" id="menit">00</span><span class="label">Menit</span></div>
-            <div class="countdown-box"><span class="angka" id="detik">00</span><span class="label">Detik</span></div>
-          </div>
+          <h2>Save The Date</h2>
+          <p>Afrizal & Ayu Julita</p>
         </div>
       </div>
 
-      <!-- SLIDE 2 -->
+      <!-- SLIDE 2 - PAKE FOTO ONLINE -->
       <div class="swiper-slide">
-        <img src="./bg2.webp" class="slide-img" alt="Foto 2">
+        <img src="https://images.unsplash.com/photo-1529636798458-921d6f76f9bf?w=800" alt="Slide 2">
         <div class="slide-content">
-          <div class="slide-judul">The Groom</div>
-          <div class="nama-besar">Afrizal</div>
-          <p class="slide-teks">Putra dari Bapak Ahmad & Ibu Siti</p>
+          <h2>The Groom</h2>
+          <p>Afrizal</p>
         </div>
       </div>
 
-      <!-- SLIDE 3 -->
+      <!-- SLIDE 3 - PAKE FOTO ONLINE -->
       <div class="swiper-slide">
-        <img src="./bg3.webp" class="slide-img" alt="Foto 3">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800" alt="Slide 3">
         <div class="slide-content">
-          <div class="slide-judul">The Bride</div>
-          <div class="nama-besar">Ayu Julita</div>
-          <p class="slide-teks">Putri dari Bapak Bambang & Ibu Lina</p>
+          <h2>The Bride</h2>
+          <p>Ayu Julita</p>
         </div>
       </div>
 
-      <!-- SLIDE 4 -->
+      <!-- SLIDE 4 - PAKE FOTO ONLINE -->
       <div class="swiper-slide">
-        <img src="./bg4.webp" class="slide-img" alt="Foto 4">
+        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800" alt="Slide 4">
         <div class="slide-content">
-          <div class="slide-judul">Akad & Resepsi</div>
-          <p class="slide-teks"><strong>Sabtu, 11 Juli 2026</strong><br>Masjid Agung Palembang</p>
+          <h2>Akad & Resepsi</h2>
+          <p>11 Juli 2026, Palembang</p>
         </div>
       </div>
 
@@ -134,59 +84,16 @@
     <div class="swiper-pagination"></div>
   </div>
 
-  <button class="btn-music" onclick="toggleMusic()">🔇</button>
-  <audio id="bgMusic" loop src="./lagu.mp3"></audio>
-
-  <div class="watermark-ads-center">
-    ⚡ ADS Creative | Order WA 0812-xxxx-xxxx
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      
-      window.bukaUndangan = function() {
-        document.getElementById('cover').classList.add('hidden');
-        playMusicOnce();
-      }
-
-      const swiper = new Swiper('.main-swiper', {
-        direction: 'horizontal',
+    // TUNGGU SEMUA GAMBAR KE LOAD BARU JALANIN SLIDE
+    window.onload = function() {
+      const swiper = new Swiper('.swiper', {
         loop: true,
-        autoplay: { delay: 4000, disableOnInteraction: false },
+        autoplay: { delay: 3000, disableOnInteraction: false },
         pagination: { el: '.swiper-pagination', clickable: true },
       });
-
-      let musikPlay = false;
-      const audio = document.getElementById('bgMusic');
-      const btnMusic = document.querySelector('.btn-music');
-      
-      function playMusicOnce() {
-        if (!musikPlay) {
-          audio.play().then(() => {
-            musikPlay = true;
-            btnMusic.innerHTML = '🔊';
-          }).catch(e => {});
-        }
-      }
-
-      window.toggleMusic = function() {
-        if (audio.paused) { audio.play(); btnMusic.innerHTML = '🔊'; } 
-        else { audio.pause(); btnMusic.innerHTML = '🔇'; }
-      }
-      
-      const tanggalAcara = new Date("July 11, 2026 08:00:00").getTime();
-      setInterval(function() {
-        const selisih = tanggalAcara - new Date().getTime();
-        if(selisih < 0) return;
-        document.getElementById("hari").innerHTML = Math.floor(selisih / 86400000);
-        document.getElementById("jam").innerHTML = Math.floor((selisih % 86400000) / 3600000);
-        document.getElementById("menit").innerHTML = Math.floor((selisih % 3600000) / 60000);
-        document.getElementById("detik").innerHTML = Math.floor((selisih % 60000) / 1000);
-      }, 1000);
-
-    });
+    };
   </script>
 </body>
 </html>
